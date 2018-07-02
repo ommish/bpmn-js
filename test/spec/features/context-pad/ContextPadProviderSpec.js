@@ -194,10 +194,8 @@ describe('features - context-pad', function() {
       expectContextPadEntries('Task_1', [
         'connect',
         'replace',
-        'append.end-event',
         'append.gateway',
         'append.append-task',
-        'append.intermediate-event',
         'append.text-annotation'
       ]);
     }));
@@ -207,7 +205,6 @@ describe('features - context-pad', function() {
       expectContextPadEntries('Task_2', [
         'connect',
         'replace',
-        '!append.end-event',
         'append.text-annotation'
       ]);
     }));
