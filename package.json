@@ -1,6 +1,6 @@
 {
-  "name": "bpmn-js",
-  "version": "2.3.1",
+  "name": "monax-bpmn",
+  "version": "1.0.0",
   "description": "A bpmn 2.0 toolkit and web modeler",
   "scripts": {
     "all": "run-s lint test distro test:distro",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bpmn-io/bpmn-js"
+    "url": "https://github.com/ommish/bpmn-js"
   },
   "keywords": [
     "bpmn",
@@ -25,15 +25,9 @@
     "process modeling"
   ],
   "author": {
-    "name": "Nico Rehwaldt",
-    "url": "https://github.com/nikku"
+    "name": "Ommi Shimizu",
+    "url": "https://github.com/ommish"
   },
-  "contributors": [
-    {
-      "name": "bpmn.io contributors",
-      "url": "https://github.com/bpmn-io"
-    }
-  ],
   "license": "SEE LICENSE IN LICENSE",
   "sideEffects": [
     "*.css"
