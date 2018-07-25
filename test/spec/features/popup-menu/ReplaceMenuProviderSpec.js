@@ -15,7 +15,6 @@ import customRulesModule from '../../../util/custom-rules';
 
 import {
   query as domQuery,
-  classes as domClasses
 } from 'min-dom';
 
 import {
@@ -85,15 +84,6 @@ describe('features/popup-menu - replace menu provider', function() {
 
     beforeEach(bootstrapModeler(diagramXMLMarkers, { modules: testModules }));
 
-    var toggleActive;
-
-    beforeEach(inject(function(popupMenu) {
-      toggleActive = function(entryCls) {
-        return popupMenu._getEntry(entryCls).active;
-      };
-    }));
-
-
     describe('active attribute', function() {
 
       it('should be true for parallel marker', inject(function(popupMenu, bpmnReplace, elementRegistry) {
@@ -112,57 +102,6 @@ describe('features/popup-menu - replace menu provider', function() {
         // then
         expect(is(loopCharacteristics, 'bpmn:MultiInstanceLoopCharacteristics')).to.be.true;
 
-        expect(toggleActive('toggle-parallel-mi')).to.be.true;
-      }));
-
-    });
-
-    describe('parallel toggle button', function() {
-
-      it('should toggle parallel marker off',
-        inject(function(popupMenu, bpmnReplace, elementRegistry) {
-
-          // given
-          var task = elementRegistry.get('ParallelTask');
-
-          openPopup(task);
-
-          var entry = queryEntry(popupMenu, 'toggle-parallel-mi');
-
-          // when
-          popupMenu.trigger(globalEvent(entry, { x: 0, y: 0 }));
-
-          openPopup(task);
-
-          var parallelEntry = queryEntry(popupMenu, 'toggle-parallel-mi');
-
-          // then
-          expect(task.businessObject.loopCharacteristics).not.to.exist;
-          expect(domClasses(parallelEntry).has('active')).to.be.false;
-        })
-      );
-
-
-      it('should toggle parallel marker on', inject(function(popupMenu, bpmnReplace, elementRegistry) {
-
-        // given
-        var task = elementRegistry.get('Task');
-
-        openPopup(task);
-
-        var entry = queryEntry(popupMenu, 'toggle-parallel-mi');
-
-        // when
-        popupMenu.trigger(globalEvent(entry, { x: 0, y: 0 }));
-
-        openPopup(task);
-
-        var parallelEntry = queryEntry(popupMenu, 'toggle-parallel-mi');
-
-        // then
-        expect(domClasses(parallelEntry).has('active')).to.be.true;
-        expect(task.businessObject.loopCharacteristics.isSequential).to.be.false;
-        expect(is(task.businessObject.loopCharacteristics, 'bpmn:MultiInstanceLoopCharacteristics')).to.be.true;
       }));
 
     });
