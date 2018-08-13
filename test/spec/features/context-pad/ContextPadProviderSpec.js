@@ -193,7 +193,6 @@ describe('features - context-pad', function() {
 
       expectContextPadEntries('Task_1', [
         'connect',
-        'replace',
         'append.gateway',
         'append.append-task',
         'append.text-annotation'
@@ -204,7 +203,6 @@ describe('features - context-pad', function() {
 
       expectContextPadEntries('Task_2', [
         'connect',
-        'replace',
         'append.text-annotation'
       ]);
     }));
@@ -217,45 +215,6 @@ describe('features - context-pad', function() {
 
     beforeEach(bootstrapModeler(diagramXML, {
       modules: testModules
-    }));
-
-  });
-
-
-  describe('replace', function() {
-
-    var diagramXML = require('../../../fixtures/bpmn/simple.bpmn');
-
-    beforeEach(bootstrapModeler(diagramXML, {
-      modules: testModules
-    }));
-
-    var container;
-
-    beforeEach(function() {
-      container = TestContainer.get(this);
-    });
-
-
-    it('should show popup menu in the correct position', inject(function(elementRegistry, contextPad) {
-
-      // given
-      var element = elementRegistry.get('StartEvent_1'),
-          padding = 5,
-          padMenuRect,
-          replaceMenuRect;
-
-      contextPad.open(element);
-
-      // when
-      contextPad.trigger('click', padEvent('replace'));
-
-      padMenuRect = contextPad.getPad(element).html.getBoundingClientRect();
-      replaceMenuRect = domQuery('.bpmn-replace', container).getBoundingClientRect();
-
-      // then
-      expect(replaceMenuRect.left).to.be.at.most(padMenuRect.left);
-      expect(replaceMenuRect.top).to.be.at.most(padMenuRect.bottom + padding);
     }));
 
   });

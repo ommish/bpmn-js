@@ -4,10 +4,6 @@ import {
   inject
 } from 'test/TestHelper';
 
-import {
-  createEvent as globalEvent
-} from '../../../util/MockEvents';
-
 import coreModule from 'lib/core';
 import modelingModule from 'lib/features/modeling';
 import replaceMenuProviderModule from 'lib/features/popup-menu';
@@ -105,32 +101,6 @@ describe('features/popup-menu - replace menu provider', function() {
       }));
 
     });
-
-  });
-
-
-  describe('replacing', function() {
-
-    beforeEach(bootstrapModeler(diagramXMLMarkers, { modules: testModules }));
-
-    it('should retain the loop characteristics', inject(function(popupMenu, bpmnReplace, elementRegistry) {
-
-      // given
-      var task = elementRegistry.get('SequentialTask');
-
-      openPopup(task);
-
-      var entry = queryEntry(popupMenu, 'replace-with-send-task');
-
-      // when
-      // replacing the task with a send task
-      var sendTask = popupMenu.trigger(globalEvent(entry, { x: 0, y: 0 }));
-
-      // then
-      expect(sendTask.businessObject.loopCharacteristics).to.exist;
-      expect(sendTask.businessObject.loopCharacteristics.isSequential).to.be.true;
-      expect(is(sendTask.businessObject.loopCharacteristics, 'bpmn:MultiInstanceLoopCharacteristics')).to.be.true;
-    }));
 
   });
 
